@@ -1,0 +1,42 @@
+service: tg-prisma
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-2'}
+  profile: ${opt:profile, 'prisma_demo'}
+  lambdaHashingVersion: '20201221'
+  apiGateway:
+    shouldStartNameWithService: true
+
+functions:
+  graphql:
+    handler: dist/index.handler
+    events:
+      - http:
+          path: graphql
+          method: post
+          cors: true
+      - http:
+          path: graphql
+          method: get
+          cors: true
+
+plugins:
+  - serverless-offline
+
+# this exclude is specific to your system if your not on the same environment as Lambda
+# this is added to decrease the output size to prevent size related issues
+package:
+  exclude:
+    - 'node_modules/@prisma/cli/*-darwin'
+    - 'node_modules/@prisma/cli/query-engine-*'
+    - 'node_modules/.prisma/client/*-darwin'
+    - 'node_modules/@prisma/engines/**'
+    - 'src/**/*'
+    - '*.eslint'
+
+custom:
+  serverless-offline:
+    useChildProcesses: true

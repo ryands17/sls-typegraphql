@@ -1,0 +1,41 @@
+{
+  "name": "graphql-typegraphql-crud",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "run-p watch:* offline",
+    "watch:ts": "tsc --watch",
+    "watch:prisma": "prisma generate --watch",
+    "offline": "sls offline",
+    "deploy": "sls deploy"
+  },
+  "dependencies": {
+    "@prisma/client": "2.18.0",
+    "apollo-server-lambda": "2.21.1",
+    "class-validator": "0.13.1",
+    "dotenv": "8.2.0",
+    "graphql": "15.5.0",
+    "graphql-fields": "2.0.3",
+    "graphql-scalars": "1.9.0",
+    "graphql-type-json": "0.3.2",
+    "reflect-metadata": "0.1.13",
+    "type-graphql": "1.1.1"
+  },
+  "devDependencies": {
+    "@types/graphql": "14.5.0",
+    "@types/graphql-fields": "1.3.3",
+    "@types/node": "14.14.35",
+    "@types/ws": "7.4.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "2.2.1",
+    "prisma": "2.18.0",
+    "serverless": "^2.30.1",
+    "serverless-offline": "^6.8.0",
+    "ts-node": "9.1.1",
+    "ts-node-dev": "1.1.6",
+    "typegraphql-prisma": "0.11.2",
+    "typescript": "4.2.3"
+  },
+  "prettier": {
+    "singleQuote": true
+  }
+}
